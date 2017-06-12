@@ -1,22 +1,29 @@
-import 'reflect-metadata';
-import 'zone.js';
+import 'angular2-universal-polyfills/browser';
 import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module.client';
+import { platformUniversalDynamic } from 'angular2-universal';
+import { AppModule } from './app/app.module';
+import 'bootstrap';
+const rootElemTagName = 'app'; // Update this if you change your root component selector
 
+// Enable either Hot Module Reloading or production mode
 if (module['hot']) {
     module['hot'].accept();
     module['hot'].dispose(() => {
         // Before restarting the app, we create a new root element and dispose the old one
-        const oldRootElem = document.querySelector('app');
-        const newRootElem = document.createElement('app');
+        const oldRootElem = document.querySelector(rootElemTagName);
+        const newRootElem = document.createElement(rootElemTagName);
         oldRootElem.parentNode.insertBefore(newRootElem, oldRootElem);
-        modulePromise.then(appModule => appModule.destroy());
+        platform.destroy();
     });
 } else {
     enableProdMode();
 }
 
-// Note: @ng-tools/webpack looks for the following expression when performing production
-// builds. Don't change how this line looks, otherwise you may break tree-shaking.
-const modulePromise = platformBrowserDynamic().bootstrapModule(AppModule);
+// Boot the application, either now or when the DOM content is loaded
+const platform = platformUniversalDynamic();
+const bootApplication = () => { platform.bootstrapModule(AppModule); };
+if (document.readyState === 'complete') {
+    bootApplication();
+} else {
+    document.addEventListener('DOMContentLoaded', bootApplication);
+}
