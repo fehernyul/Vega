@@ -8,27 +8,27 @@ namespace Vega.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("INSERT INTO Makes (Name) VALUES ('Make1')");
-            migrationBuilder.Sql("INSERT INTO Makes (Name) VALUES ('Make2')");
-            migrationBuilder.Sql("INSERT INTO Makes (Name) VALUES ('Make3')");
+            migrationBuilder.Sql("INSERT INTO Makes (Name) VALUES ('Opel')");
+            migrationBuilder.Sql("INSERT INTO Makes (Name) VALUES ('Suzuki')");
+            migrationBuilder.Sql("INSERT INTO Makes (Name) VALUES ('Volkswagen')");
 
-            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Make1-ModelA', (SELECT ID FROM Makes WHERE Name = 'Make1'))");
-            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Make1-ModelB', (SELECT ID FROM Makes WHERE Name = 'Make1'))");
-            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Make1-ModelC', (SELECT ID FROM Makes WHERE Name = 'Make1'))");
+            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Corsa', (SELECT ID FROM Makes WHERE Name = 'Opel'))");
+            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Astra', (SELECT ID FROM Makes WHERE Name = 'Opel'))");
+            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Insignia', (SELECT ID FROM Makes WHERE Name = 'Opel'))");
 
-            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Make2-ModelA', (SELECT ID FROM Makes WHERE Name = 'Make2'))");
-            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Make2-ModelB', (SELECT ID FROM Makes WHERE Name = 'Make2'))");
-            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Make2-ModelC', (SELECT ID FROM Makes WHERE Name = 'Make2'))");
+            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Ignis', (SELECT ID FROM Makes WHERE Name = 'Suzuki'))");
+            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Vitara', (SELECT ID FROM Makes WHERE Name = 'Suzuki'))");
+            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Shift', (SELECT ID FROM Makes WHERE Name = 'Suzuki  '))");
 
-            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Make3-ModelA', (SELECT ID FROM Makes WHERE Name = 'Make3'))");
-            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Make3-ModelB', (SELECT ID FROM Makes WHERE Name = 'Make3'))");
-            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Make3-ModelC', (SELECT ID FROM Makes WHERE Name = 'Make3'))");
+            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Polo', (SELECT ID FROM Makes WHERE Name = 'Volkswagen'))");
+            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Passat', (SELECT ID FROM Makes WHERE Name = 'Volkswagen'))");
+            migrationBuilder.Sql("INSERT INTO Models (Name, MakeID) VALUES ('Golf', (SELECT ID FROM Makes WHERE Name = 'Volkswagen'))");
 
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DELETE FROM Makes WHERE Name IN ('Make1', 'Make2', 'Make3')");
+            migrationBuilder.Sql("DELETE FROM Makes WHERE Name IN ('Opel', 'Suzuki', 'Volkswagen')");
         }
     }
 }
